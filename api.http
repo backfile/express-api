@@ -1,6 +1,3 @@
-GET http://localhost:1234/
-
-## Para crear un pokemon
 
 POST http://localhost:1234/pokemon
 Content-Type: application/json

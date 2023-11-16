@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const PORT = 1234
 
+app.use((req, res, next)=>{
+    console.log('Mi primer middleware')
+    next()
+})
+
 app.get('/', (req, res)=>{
     // express detecta el content type que debe utilizar
     res.send('<h1>Mi pagina</h1>')
@@ -25,6 +30,10 @@ app.post('/pokemon', (req, res)=>{
         console.log(data)
         res.status(201).json(data)
     })
+})
+
+app.use((req, res)=>{
+    res.status(404).send('404')
 })
 
 app.listen(PORT, ()=>{
