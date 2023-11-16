@@ -2,10 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 1234
 
-app.use((req, res, next)=>{
-    console.log('Mi primer middleware')
-    next()
-})
+app.use(express.json())
 
 app.get('/', (req, res)=>{
     // express detecta el content type que debe utilizar
@@ -18,18 +15,19 @@ app.get('/json', (req, res)=>{
 })
 
 app.post('/pokemon', (req, res)=>{
-    let body = ''
+    // let body = ''
 
-    // escuchar el evento data
-    req.on('data', chunk => {
-        body += chunk.toString()
-    })
+    //  escuchar el evento data
+    // req.on('data', chunk => {
+    //     body += chunk.toString()
+    // })
 
-    req.on('end', () => {
-        const data = JSON.parse(body)
-        console.log(data)
-        res.status(201).json(data)
-    })
+    // req.on('end', () => {
+    //     const data = JSON.parse(body)
+    //     console.log(data)
+    //     res.status(201).json(data)
+    // })
+    res.status(201).json(req.body)
 })
 
 app.use((req, res)=>{
